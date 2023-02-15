@@ -22,10 +22,18 @@ const generatePDF = async (name) => {
     })
 
     const uri = await pdfDoc.saveAsBase64({ dataUri: true })
-
-    document.querySelector('#mypdf').src = uri;
+    saveAs(uri, "Certificate Generator.pdf", { autoBom: true })
+    // window.open(uri)
+    // document.querySelector('#mypdf').src = uri;
 
 }
 
-generatePDF("Pranjil Kumar")
+const submit = document.getElementById('Subbutton')
+const inputvalue = document.getElementById('inputval')
+submit.addEventListener('click', () => {
+    const val = inputvalue.value
+    generatePDF(val)
+    // alert(val)
+})
+
 
